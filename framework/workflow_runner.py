@@ -106,6 +106,11 @@ class WorkflowRunner:
         # Setup signal handlers for graceful shutdown
         self._setup_signal_handlers()
 
+    @property
+    def invocation_id(self) -> str:
+        """Get the invocation ID of the workflow."""
+        return self._faasr_payload["InvocationID"]
+
     ##########################
     # Initialization helpers #
     ##########################
