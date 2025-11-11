@@ -1,0 +1,19 @@
+[project]
+name = "faasr-integration-tests"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "faasr-py",
+    "pygithub>=2.8.1",
+    "python-dotenv>=1.2.1",
+]
+
+[tool.uv.sources]
+faasr-py = { git = "https://github.com/FaaSr/FaaSr-Backend.git" }
+
+[dependency-groups]
+dev = [
+    "boto3-stubs[s3]>=1.40.70",
+]
