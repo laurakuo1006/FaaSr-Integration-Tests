@@ -4,14 +4,16 @@ set -e
 WORKFLOW_FILE=""
 
 HELP_MESSAGE="
-Usage: $0 --workflow-file <workflow-file>
+Usage: $0 --f <workflow-file> [-c]
 
 Options:
   -f|--workflow-file <workflow-file>  Path to the workflow JSON file
+  -c|--custom-container  Allow custom containers
   -h|--help            Show this help message and exit
 
 Example:
   $0 --workflow-file IntegrationTestWorkflow.json
+  $0 --workflow-file IntegrationTestWorkflow.json -c
 "
 
 while [[ $# -gt 0 ]]; do
@@ -24,6 +26,10 @@ while [[ $# -gt 0 ]]; do
             fi
             WORKFLOW_FILE=$2
             shift 2
+            ;;
+        -c|--custom-container)
+            export CUSTOM_CONTAINER=true
+            shift 1
             ;;
         -h|--help)
             echo "$HELP_MESSAGE"
