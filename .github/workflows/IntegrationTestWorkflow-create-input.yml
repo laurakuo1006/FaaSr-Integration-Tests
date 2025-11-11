@@ -13,7 +13,7 @@ on:
 jobs:
     run_docker_image:
         runs-on: ubuntu-latest
-        container: ghcr.io/faasr/github-actions-python:latest
+        container: ghcr.io/jessestover/faasr-traceback-logging-python:latest
 
         env:
             GH_PAT: ${{ secrets.GH_PAT}}
@@ -23,7 +23,7 @@ jobs:
             PAYLOAD_URL: ${{ github.event.inputs.PAYLOAD_URL }}
 
         steps:
-            - name: Run Python entrypoint
-              run: |
-                  cd /action
-                  python3 faasr_entry.py
+          - name: Run Python entrypoint
+            run: |
+                cd /action
+                python3 faasr_entry.py
