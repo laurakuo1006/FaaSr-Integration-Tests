@@ -10,8 +10,8 @@ from integration_tests.conftest import WorkflowTester
 
 
 @pytest.fixture(scope="module", autouse=True)
-def tester():
-    with WorkflowTester(workflow_file_path="laura.json") as tester:
+def tester(workflow_file):
+    with workflow_file("workflows/IntegrationTestWorkflow.json") as tester:
         yield tester
 
 

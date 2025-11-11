@@ -1,7 +1,11 @@
+import argparse
 import os
 import sys
 import time
+from contextlib import contextmanager
+from unittest import mock
 
+import pytest
 from dotenv import load_dotenv
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -16,9 +20,8 @@ CHECK_INTERVAL = 1
 
 
 class WorkflowTester:
-    def __init__(self, workflow_file_path: str):
-        self.runner = WorkflowRunner(
-            workflow_file_path=workflow_file_path,
+    def __init__(self):
+        self.runner = WorkflowRunner.trigger_workflow(
             timeout=TIMEOUT,
             check_interval=CHECK_INTERVAL,
             stream_logs=True,
@@ -29,7 +32,6 @@ class WorkflowTester:
         return self.runner.s3_client
 
     def __enter__(self):
-        self.runner.trigger_workflow()
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -57,9 +59,7 @@ class WorkflowTester:
         return False
 
     def get_s3_key(self, file_name: str):
-        return (
-            f"integration-tests/{self.runner.faasr_payload['InvocationID']}/{file_name}"
-        )
+        return f"integration-tests/{self.runner.invocation_id}/{file_name}"
 
     def wait_for(self, function_name: str):
         status = self.runner.get_function_statuses()[function_name]
@@ -105,3 +105,19 @@ class WorkflowTester:
             self.runner.get_function_statuses()[function_name]
             == FunctionStatus.NOT_INVOKED
         )
+
+
+@pytest.fixture(scope="session")
+def workflow_file():
+    @contextmanager
+    def wrapper(workflow_file: str):
+        with mock.patch(
+            "faasr_workflow.scripts.invoke_workflow.argparse.ArgumentParser.parse_args"
+        ) as mock_parse_args:
+            mock_parse_args.return_value = argparse.Namespace(
+                workflow_file=workflow_file
+            )
+            with WorkflowTester() as tester:
+                yield tester
+
+    return wrapper
