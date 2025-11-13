@@ -29,6 +29,23 @@ class S3ClientError(Exception):
 
 
 class FaaSrS3Client:
+    """
+    A client for interacting with FaaSr S3 datastores.
+
+    This class is responsible for:
+    - Initializing the S3 client
+    - Checking if objects exist in S3
+    - Getting objects from S3
+
+    Args:
+        workflow_data: The FaaSr workflow data.
+        access_key: The FaaSr S3 access key.
+        secret_key: The FaaSr S3 secret key.
+
+    Raises:
+        `S3ClientInitializationError`: If the S3 client initialization fails.
+    """
+
     def __init__(
         self,
         *,
@@ -67,6 +84,18 @@ class FaaSrS3Client:
             raise S3ClientInitializationError(f"Unhandled error: {e}") from e
 
     def object_exists(self, key: str) -> bool:
+        """
+        Check if the object exists in S3.
+
+        Args:
+            key: The key of the object to check.
+
+        Returns:
+            True if the object exists, False otherwise.
+
+        Raises:
+            S3ClientError: If an error occurs.
+        """
         try:
             self._client.head_object(Bucket=self._bucket_name, Key=key)
         except ClientError as e:
@@ -77,6 +106,19 @@ class FaaSrS3Client:
         return True
 
     def get_object(self, key: str, encoding: str = "utf-8") -> str:
+        """
+        Get the object from S3.
+
+        Args:
+            key: The key of the object to get.
+            encoding: The encoding to use for the object.
+
+        Returns:
+            The object content.
+
+        Raises:
+            S3ClientError: If the object does not exist or an error occurs.
+        """
         try:
             return (
                 self._client.get_object(Bucket=self._bucket_name, Key=key)["Body"]

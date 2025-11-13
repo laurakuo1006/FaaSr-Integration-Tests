@@ -54,6 +54,30 @@ class StopMonitoring(Exception):
 
 
 class WorkflowRunner:
+    """
+    Runs a FaaSr workflow and monitors the execution of the functions.
+
+    This class is responsible for:
+    - Validating the environment
+    - Setting up the logger
+    - Building the adjacency graph
+    - Initializing the function statuses
+    - Initializing the S3 client
+    - Setting up the signal handlers
+    - Starting the monitoring thread
+    - Shutting down the monitoring thread
+    - Cleaning up the resources
+
+    Args:
+        faasr_payload: The FaaSr payload.
+        timeout: The timeout for the monitoring thread.
+        check_interval: The interval for the monitoring thread.
+        stream_logs: Whether to stream the logs to the console.
+
+    Raises:
+        InitializationError: If the environment is not valid.
+    """
+
     logger_name = "WorkflowRunner"
 
     def __init__(
@@ -500,6 +524,17 @@ class WorkflowRunner:
         check_interval: int,
         stream_logs: bool = False,
     ) -> "WorkflowRunner":
+        """
+        Trigger a workflow and initialize the workflow runner.
+
+        Args:
+            timeout: The timeout for the monitoring thread.
+            check_interval: The interval for the monitoring thread.
+            stream_logs: Whether to stream the logs to the console.
+
+        Returns:
+            WorkflowRunner: The initialized workflow runner.
+        """
         faasr_payload = main(testing=True)
         runner = cls(
             faasr_payload=faasr_payload,

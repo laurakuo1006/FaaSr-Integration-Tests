@@ -25,6 +25,14 @@ class FaaSrFunctionLogger:
     - Fetching and storing log content
     - Providing event-driven callbacks for log updates
     - Tracking log completion status
+
+    Args:
+        function_name: The name of the function.
+        workflow_name: The name of the workflow.
+        invocation_folder: The folder where the logs are stored.
+        s3_client: The S3 client to use.
+        stream_logs: Whether to stream the logs to the console.
+        interval_seconds: The interval in seconds to check for new logs.
     """
 
     def __init__(
@@ -141,7 +149,7 @@ class FaaSrFunctionLogger:
         Get the stop flag (thread-safe).
 
         Returns:
-            bool: True if the logger should stop, False otherwise.
+            bool: True if the logger's stop flag is set, False otherwise.
         """
         with self._lock:
             return self._stop_requested
