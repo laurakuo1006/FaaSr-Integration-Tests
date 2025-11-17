@@ -182,8 +182,8 @@
     "test_dontrun_true": "JStover95/FaaSr-Integration-Tests/functions/IntegrationTestWorkflow",
     "test_rank": "JStover95/FaaSr-Integration-Tests/functions/IntegrationTestWorkflow",
     "sync2": "JStover95/FaaSr-Integration-Tests/functions/IntegrationTestWorkflow",
-    "fail-py": "JStover95/FaaSr-Integration-Tests/functions/TracebackLogging",
-    "fail-r": "JStover95/FaaSr-Integration-Tests/functions/TracebackLogging"
+    "fail_py": "JStover95/FaaSr-Integration-Tests/functions/TracebackLogging",
+    "fail_r": "JStover95/FaaSr-Integration-Tests/functions/TracebackLogging"
   },
   "LoggingDataStore": "S3",
   "FaaSrLog": "FaaSrLog",
