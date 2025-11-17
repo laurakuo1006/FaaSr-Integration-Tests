@@ -136,7 +136,7 @@
       "InvokeNext": [],
       "FaaSServer": "GH",
       "Type": "R",
-      "FunctionName": "test_r_api"
+      "FunctionName": "fail_r"
     }
   },
   "ComputeServers": {
