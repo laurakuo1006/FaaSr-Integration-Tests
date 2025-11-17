@@ -36,15 +36,3 @@ test_r_api <- function(folder, input4, input2, input3, output1, output2) {
   msg <- paste0("Created output file: ", remote_file, " with content: Test output2")
   faasr_log(msg)
 }
-
-fail_r <- function() {
-  # tryCatch(
-  #     {
-  #         stop("inside_exception")
-  #     },
-  #     error = function(e) {
-  #         stop("outside_exception")
-  #     }
-  # )
-  stop("outside_exception")
-}

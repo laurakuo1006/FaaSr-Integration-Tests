@@ -183,7 +183,7 @@
     "test_rank": "JStover95/FaaSr-Integration-Tests/functions/IntegrationTestWorkflow",
     "sync2": "JStover95/FaaSr-Integration-Tests/functions/IntegrationTestWorkflow",
     "fail_py": "JStover95/FaaSr-Integration-Tests/functions/TracebackLogging",
-    "fail_r": "JStover95/FaaSr-Integration-Tests/functions/IntegrationTestWorkflow"
+    "fail_r": "JStover95/FaaSr-Integration-Tests/functions/TracebackLogging"
   },
   "LoggingDataStore": "S3",
   "FaaSrLog": "FaaSrLog",
