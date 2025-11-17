@@ -119,10 +119,24 @@
         "run_true_output": "run_true_output.txt",
         "run_false_output": "run_false_output.txt"
       },
-      "InvokeNext": [],
+      "InvokeNext": ["fail-py", "fail-r"],
       "FaaSServer": "GH",
       "Type": "Python",
       "FunctionName": "sync2"
+    },
+    "fail-py": {
+      "Arguments": {},
+      "InvokeNext": [],
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "fail_py"
+    },
+    "fail-r": {
+      "Arguments": {},
+      "InvokeNext": [],
+      "FaaSServer": "GH",
+      "Type": "R",
+      "FunctionName": "fail_r"
     }
   },
   "ComputeServers": {
@@ -151,7 +165,9 @@
     "test-run-false": "jessestover/faasr-traceback-logging-python:latest",
     "test-dontrun-true": "jessestover/faasr-traceback-logging-python:latest",
     "test-rank": "jessestover/faasr-traceback-logging-python:latest",
-    "sync2": "jessestover/faasr-traceback-logging-python:latest"
+    "sync2": "jessestover/faasr-traceback-logging-python:latest",
+    "fail-py": "jessestover/faasr-traceback-logging-python:latest",
+    "fail-r": "jessestover/faasr-traceback-logging-r:latest"
   },
   "FunctionInvoke": "create-input",
   "DefaultDataStore": "S3",
@@ -165,7 +181,9 @@
     "test_run_false": "JStover95/FaaSr-Integration-Tests/functions/IntegrationTestWorkflow",
     "test_dontrun_true": "JStover95/FaaSr-Integration-Tests/functions/IntegrationTestWorkflow",
     "test_rank": "JStover95/FaaSr-Integration-Tests/functions/IntegrationTestWorkflow",
-    "sync2": "JStover95/FaaSr-Integration-Tests/functions/IntegrationTestWorkflow"
+    "sync2": "JStover95/FaaSr-Integration-Tests/functions/IntegrationTestWorkflow",
+    "fail-py": "JStover95/FaaSr-Integration-Tests/functions/TracebackLogging",
+    "fail-r": "JStover95/FaaSr-Integration-Tests/functions/TracebackLogging"
   },
   "LoggingDataStore": "S3",
   "FaaSrLog": "FaaSrLog",
