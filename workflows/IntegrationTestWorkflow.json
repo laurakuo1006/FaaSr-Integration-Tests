@@ -128,7 +128,7 @@
   "ComputeServers": {
     "GH": {
       "FaaSType": "GitHubActions",
-      "UserName": "JStover95",
+      "UserName": "laurakuo1006",
       "UseSecretStore": true,
       "ActionRepoName": "FaaSr-Integration-Tests",
       "Branch": "main"
@@ -136,7 +136,7 @@
   },
   "DataStores": {
     "S3": {
-      "Endpoint": "https://s3.us-east-1.amazonaws.com",
+      "Endpoint": "https://play.min.io",
       "Bucket": "faasr-integration-tests",
       "Region": "us-east-1"
     }
