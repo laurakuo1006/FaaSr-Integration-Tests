@@ -137,7 +137,7 @@
   "DataStores": {
     "S3": {
       "Endpoint": "https://play.min.io",
-      "Bucket": "faasr-integration-tests",
+      "Bucket": "faasr",
       "Region": "us-east-1"
     }
   },
